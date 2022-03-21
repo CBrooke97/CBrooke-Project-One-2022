@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public float maxAstralus;
     public float currentAstralus;
 
-    public int level;
+    public int level = 1;
     public float maxExperience;
     public float currentExperience;
 
@@ -38,5 +38,21 @@ public class Player : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void GainExp(float amount)
+    {
+        float expGain = currentExperience + amount;
+        if (expGain > maxExperience)
+        {
+            float carryExp = (currentExperience + amount) - maxExperience;
+            level++;
+            maxExperience *= 1.2f;
+            currentExperience = carryExp;
+        }
+        else
+        {
+            currentExperience = expGain;
+        }
     }
 }
