@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     [Header("Player Stats")]
     public float maxHealth;
     public float currentHealth;
+    public float maxAstralus;
+    public float currentAstralus;
 
     public int level;
     public float maxExperience;
