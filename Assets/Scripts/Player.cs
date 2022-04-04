@@ -55,4 +55,16 @@ public class Player : MonoBehaviour
             currentExperience = expGain;
         }
     }
+
+    public void ApplyDamage(int amount)
+    {
+        if (currentHealth - amount <= 0)
+        {
+            //death logic here
+        }
+        else if (currentHealth - amount > 0)
+        {
+            currentHealth -= amount;
+        }
+    }
 }
