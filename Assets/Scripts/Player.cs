@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void DamageHandler(float value);
+
 public class Player : MonoBehaviour
 {
     //Player stats
@@ -26,18 +28,21 @@ public class Player : MonoBehaviour
 
     #endregion
 
-
+    public event DamageHandler DamageEvent;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        UpdateHealthBar();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            UpdateHealthBar();
+        }
     }
 
     public void GainExp(float amount)
@@ -65,6 +70,13 @@ public class Player : MonoBehaviour
         else if (currentHealth - amount > 0)
         {
             currentHealth -= amount;
+            UpdateHealthBar();
         }
+    }
+
+    public void UpdateHealthBar()
+    {
+        Debug.Log("hello");
+        DamageEvent?.Invoke(currentHealth/maxHealth);
     }
 }
