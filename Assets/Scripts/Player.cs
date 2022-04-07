@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public delegate void DamageHandler(float value);
+public delegate void AstralusHandler(float value);
 
 public class Player : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
     #endregion
 
     public event DamageHandler DamageEvent;
+    public event AstralusHandler AstralusEvent;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +44,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             UpdateHealthBar();
+            OnAstralusUpdate();
         }
     }
 
@@ -76,7 +79,13 @@ public class Player : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        Debug.Log("hello");
+        //Debug.Log("Health Updated");
         DamageEvent?.Invoke(currentHealth/maxHealth);
+    }
+
+    public void OnAstralusUpdate()
+    {
+        AstralusEvent?.Invoke(currentAstralus/maxAstralus);
+        Debug.Log("Astralus Updated");
     }
 }
