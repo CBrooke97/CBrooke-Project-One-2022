@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class HealthBarHandler : MonoBehaviour
 {
-    private Image HealthBarImage;
+    private Image healthBarImage;
 
     // Start is called before the first frame update
     void Start()
     {
-        HealthBarImage = GetComponent<Image>();
-        Player player = GameObject.Find("Player").GetComponent<Player>();
-        player.DamageEvent += SetHealthBarValue;
-        player.UpdateHealthBar();
+        healthBarImage = GetComponent<Image>();
+        Player _player = GameObject.Find("Player").GetComponent<Player>();
+        _player.DamageEvent += SetHealthBarValue;
+        _player.UpdateHealthBar();
     }
 
     // Update is called once per frame
@@ -24,28 +24,28 @@ public class HealthBarHandler : MonoBehaviour
 
     public void SetHealthBarValue(float value)
     {
-        Debug.Log(value);
-        HealthBarImage.fillAmount = value;
-        if (value < 0.2)
+        //Debug.Log(value);
+        healthBarImage.fillAmount = value;
+        if (value < 0.15)
         {
-            HealthBarImage.color = Color.red;
+            healthBarImage.color = Color.red;
         }
-        else if (value < 0.5)
+        else if (value < 0.3)
         {
-            HealthBarImage.color = new Color(1f, 0.5f, 0f);
+            healthBarImage.color = new Color(1f, 0.5f, 0f);
         }
-        else if (value < 0.8)
+        else if (value < 0.6)
         {
-            HealthBarImage.color = Color.yellow;
+            healthBarImage.color = Color.yellow;
         }
         else
         {
-            HealthBarImage.color = Color.green;
+            healthBarImage.color = Color.green;
         }
     }
 
     public float GetHealthBarValue()
     {
-        return HealthBarImage.fillAmount;
+        return healthBarImage.fillAmount;
     }
 }
