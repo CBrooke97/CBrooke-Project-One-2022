@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SpellType { target, aoe, buff, movement, none}
+public enum SpellType { target, aoe, buff, none}
 public enum ElementAffinity { fire, water, leaf, ground, electric, ice, light, dark }
 public class BaseSpell : MonoBehaviour
 {
-    public float damage;
-    public float astralusCost;
-    public ElementAffinity affinity;
-    public SpellType type;
-    public float coodlown;
-    public bool canCast;
+    public SpellScriptableObject SpellCast;
+
+    private CircleCollider2D spellCollider;
+
+    private void Awake()
+    {
+        spellCollider = GetComponent<CircleCollider2D>();
+        spellCollider.isTrigger = true;
+        spellCollider.radius = SpellCast.hitboxRadius;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +32,12 @@ public class BaseSpell : MonoBehaviour
     public void OnCast()
     {
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Apply spell
+        Destroy(this.gameObject);
     }
 
     public IEnumerator OnCooldown(float cd)
