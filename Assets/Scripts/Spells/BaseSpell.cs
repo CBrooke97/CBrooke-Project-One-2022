@@ -6,15 +6,17 @@ public enum SpellType { target, aoe, buff, none}
 public enum ElementAffinity { fire, water, leaf, ground, electric, ice, light, dark }
 public class BaseSpell : MonoBehaviour
 {
-    public SpellScriptableObject SpellCast;
+    public SpellScriptableObject SpellSO;
 
     private CircleCollider2D spellCollider;
+
+    private bool canCast = true;
 
     private void Awake()
     {
         spellCollider = GetComponent<CircleCollider2D>();
         spellCollider.isTrigger = true;
-        spellCollider.radius = SpellCast.hitboxRadius;
+        spellCollider.radius = SpellSO.hitboxRadius;
     }
 
     // Start is called before the first frame update
@@ -26,7 +28,10 @@ public class BaseSpell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (SpellSO.Speed > 0)
+        {
+            transform.Translate(transform.forward * SpellSO.Speed * Time.deltaTime);
+        }
     }
 
     public void OnCast()

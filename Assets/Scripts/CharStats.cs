@@ -10,6 +10,9 @@ public class CharStats : MonoBehaviour
 
     [SerializeField] private float currentHealth;
     [SerializeField] private float maxHealth;
+    [SerializeField] private float astralusRechargeRate = 1f;
+
+    [SerializeField] public BaseSpell[] Spells = new BaseSpell[3];
 
     public float CurrentHealth
     {
@@ -52,7 +55,7 @@ public class CharStats : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
-        else
+        else if (currentHealth + value < maxHealth && currentHealth + value > currentHealth)
         {
             currentHealth += value;
         }

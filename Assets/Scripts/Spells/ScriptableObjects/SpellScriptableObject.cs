@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Spell", menuName = "Spells")]
-
 public enum Element { Fire, Water, Leaf }
 
+[CreateAssetMenu(fileName = "New Spell", menuName = "Spells")]
 public class SpellScriptableObject : ScriptableObject
 {
     public float DamageAmount = 10f;
