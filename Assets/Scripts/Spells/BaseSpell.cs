@@ -53,11 +53,16 @@ public class BaseSpell : MonoBehaviour
 
         if(collision.gameObject.tag == "Player")
         {
-
+            print("hit player");
         }
-        else
+        else if (collision.gameObject.tag == "Damageable")
         {
-            //Destroy(this.gameObject);
+            Destroy(this.gameObject);
+        }
+        else if (collision.gameObject.tag == "Enemy")
+        {
+            collision.GetComponent<CharStats>().TakeDamage(SpellSO.DamageAmount);
+            Destroy(this.gameObject);
         }
         
     }

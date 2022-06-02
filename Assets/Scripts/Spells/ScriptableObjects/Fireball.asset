@@ -16,7 +16,7 @@ MonoBehaviour:
   AstralusCost: 10
   Description: A spell
   Cooldown: 0
-  Lifetime: 5
-  Speed: 100
-  hitboxRadius: 1
+  Lifetime: 1
+  Speed: 10
+  hitboxRadius: 0.1
   Element: 0

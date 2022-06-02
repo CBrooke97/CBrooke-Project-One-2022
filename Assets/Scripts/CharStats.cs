@@ -41,7 +41,7 @@ public class CharStats : MonoBehaviour
     {
         if(currentHealth - value <= 0)
         {
-            //Death code here
+            Destroy(this.gameObject);
         }
         else
         {
