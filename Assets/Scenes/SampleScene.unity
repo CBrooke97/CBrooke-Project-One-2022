@@ -217,7 +217,9 @@ GameObject:
   - component: {fileID: 657467162}
   - component: {fileID: 657467161}
   - component: {fileID: 657467164}
+  - component: {fileID: 657467168}
   - component: {fileID: 657467167}
+  - component: {fileID: 657467163}
   - component: {fileID: 657467165}
   - component: {fileID: 657467166}
   m_Layer: 0
@@ -293,6 +295,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &657467163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657467160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a103c7915c9f3d48ac895b73c3a1885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStats: {fileID: 0}
+  spellToCast: {fileID: 0}
+  spellIndex: 0
 --- !u!114 &657467164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,6 +393,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dded1ad417e241141ba4fdb16e813537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &657467168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657467160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10d9ba14f99553d45895c244e8778e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 0
+  currentExp: 0
+  maxExp: 0
+  currentHealth: 0
+  maxHealth: 0
+  astralusRechargeRate: 1
+  Spells:
+  - {fileID: 3409116884689781522, guid: d73559c743cfb744cb66e590eab7cc8d, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  currentAstralus: 0
+  maxAstralus: 0
 --- !u!1 &1235767844
 GameObject:
   m_ObjectHideFlags: 0

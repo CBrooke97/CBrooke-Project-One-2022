@@ -10,6 +10,9 @@ public class BaseSpell : MonoBehaviour
 
     private CircleCollider2D spellCollider;
 
+    private Vector2 mouseWorldPosition;
+    private Vector2 fireDirection;
+
     private bool canCast = true;
 
     private void Awake()
@@ -17,12 +20,17 @@ public class BaseSpell : MonoBehaviour
         spellCollider = GetComponent<CircleCollider2D>();
         spellCollider.isTrigger = true;
         spellCollider.radius = SpellSO.hitboxRadius;
+        mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Destroy(this.gameObject, SpellSO.Lifetime);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        fireDirection = mouseWorldPosition - new Vector2(transform.position.x, transform.position.y);
+        fireDirection.Normalize();
+        GetComponent<Rigidbody2D>().velocity = fireDirection * SpellSO.Speed;
     }
 
     // Update is called once per frame
@@ -30,7 +38,7 @@ public class BaseSpell : MonoBehaviour
     {
         if (SpellSO.Speed > 0)
         {
-            transform.Translate(transform.forward * SpellSO.Speed * Time.deltaTime);
+            
         }
     }
 
@@ -42,7 +50,16 @@ public class BaseSpell : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Apply spell
-        Destroy(this.gameObject);
+
+        if(collision.gameObject.tag == "Player")
+        {
+
+        }
+        else
+        {
+            //Destroy(this.gameObject);
+        }
+        
     }
 
     public IEnumerator OnCooldown(float cd)

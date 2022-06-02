@@ -6,7 +6,7 @@ public class SpellSystem : MonoBehaviour
 {
     [SerializeField] private CharStats playerStats;
     private bool isCasting = false;
-    [SerializeField] private Transform castPoint;
+    //[SerializeField] private Transform castPoint;
 
     [SerializeField] private BaseSpell spellToCast;
     [SerializeField] private int spellIndex = 0;
@@ -46,6 +46,7 @@ public class SpellSystem : MonoBehaviour
     public void InstantiateSpell()
     {
         // Spawn spell
+        Instantiate(spellToCast, gameObject.transform.position, gameObject.transform.rotation);
     }
 
     private void IncrementSpell()
