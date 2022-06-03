@@ -33,7 +33,7 @@ public class SpellSystem : MonoBehaviour
             }
         }
 
-        if (!isCasting && Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             IncrementSpell();
         }
@@ -43,14 +43,12 @@ public class SpellSystem : MonoBehaviour
     {
         isCasting = true;
         playerStats.isRechargingAstralus = false;
-        print("Casting Spell");
         InstantiateSpell();
 
         yield return new WaitForSeconds(2f);
 
         isCasting = false;
         playerStats.isRechargingAstralus = true;
-        print("Can Cast");
     }
 
     public void InstantiateSpell()
@@ -61,14 +59,17 @@ public class SpellSystem : MonoBehaviour
 
     private void IncrementSpell()
     {
-        if(spellIndex < playerStats.Spells.Length)
+        if(spellIndex < playerStats.Spells.Length - 1)
         {
+            
             spellIndex++;
+            print(spellIndex);
             spellToCast = playerStats.Spells[spellIndex];
         }
         else
         {
             spellIndex = 0;
+            print(spellIndex);
             spellToCast = playerStats.Spells[spellIndex];
         }
     }
