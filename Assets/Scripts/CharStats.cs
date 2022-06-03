@@ -10,20 +10,34 @@ public class CharStats : MonoBehaviour
 
     [SerializeField] private float currentHealth;
     [SerializeField] private float maxHealth;
+    
     [SerializeField] private float astralusRechargeRate = 1f;
+    public bool isRechargingAstralus = false;
 
     [SerializeField] public BaseSpell[] Spells = new BaseSpell[3];
 
     public float CurrentHealth
     {
-        get
-        { return currentHealth; }
+        get { return currentHealth; }
     }
-    public float MaxHealth { get; set; }
+    public float MaxHealth
+    { 
+        get { return maxHealth; } 
+    }
 
 
     [SerializeField] private float currentAstralus;
     [SerializeField] private float maxAstralus;
+
+    public float CurrentAstralus
+    {
+        get { return currentAstralus; }
+    }
+
+    public float MaxAstralus
+    {
+        get { return maxAstralus; }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +48,10 @@ public class CharStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(currentAstralus < maxAstralus && isRechargingAstralus)
+        {
+            currentAstralus += astralusRechargeRate * Time.deltaTime;
+        }
     }
 
     public void TakeDamage(float value)
@@ -59,5 +76,10 @@ public class CharStats : MonoBehaviour
         {
             currentHealth += value;
         }
+    }
+
+    public void SpendAstralus(float astralusCost)
+    {
+        currentAstralus -= astralusCost;
     }
 }

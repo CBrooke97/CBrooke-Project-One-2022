@@ -29,8 +29,15 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    public CharStats PlayerStats;
+
     public event DamageHandler DamageEvent;
     public event AstralusHandler AstralusEvent;
+
+    private void Awake()
+    {
+        PlayerStats = GetComponent<CharStats>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -66,13 +73,13 @@ public class Player : MonoBehaviour
 
     public void ApplyDamage(int amount)
     {
-        if (currentHealth - amount <= 0)
+        if (PlayerStats.CurrentHealth - amount <= 0)
         {
             //death logic here
         }
-        else if (currentHealth - amount > 0)
+        else if (PlayerStats.CurrentHealth - amount > 0)
         {
-            currentHealth -= amount;
+            PlayerStats.TakeDamage(amount);
             UpdateHealthBar();
         }
     }
@@ -80,12 +87,14 @@ public class Player : MonoBehaviour
     public void UpdateHealthBar()
     {
         //Debug.Log("Health Updated");
-        DamageEvent?.Invoke(currentHealth/maxHealth);
+        print(PlayerStats.CurrentHealth);
+        print(PlayerStats.MaxHealth);
+        DamageEvent?.Invoke(PlayerStats.CurrentHealth/PlayerStats.MaxHealth);
     }
 
     public void OnAstralusUpdate()
     {
-        AstralusEvent?.Invoke(currentAstralus/maxAstralus);
+        AstralusEvent?.Invoke(PlayerStats.CurrentAstralus/PlayerStats.MaxAstralus);
         Debug.Log("Astralus Updated");
     }
 }

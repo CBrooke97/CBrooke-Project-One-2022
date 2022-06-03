@@ -22,7 +22,15 @@ public class SpellSystem : MonoBehaviour
     {
         if(!isCasting && Input.GetMouseButtonDown(0))
         {
-            StartCoroutine(CastSpell());
+            if (spellToCast.SpellSO.AstralusCost <= playerStats.CurrentAstralus)
+            {
+                playerStats.SpendAstralus(spellToCast.SpellSO.AstralusCost);
+                StartCoroutine(CastSpell());
+            }
+            else
+            {
+                print("Not enough Astralus to cast this spell.");
+            }
         }
 
         if (!isCasting && Input.GetKeyDown(KeyCode.Q))
@@ -34,12 +42,14 @@ public class SpellSystem : MonoBehaviour
     private IEnumerator CastSpell()
     {
         isCasting = true;
+        playerStats.isRechargingAstralus = false;
         print("Casting Spell");
         InstantiateSpell();
 
         yield return new WaitForSeconds(2f);
 
         isCasting = false;
+        playerStats.isRechargingAstralus = true;
         print("Can Cast");
     }
 
