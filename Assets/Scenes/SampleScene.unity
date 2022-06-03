@@ -259,6 +259,7 @@ MonoBehaviour:
   currentHealth: 100
   maxHealth: 100
   astralusRechargeRate: 1
+  isRechargingAstralus: 0
   Spells:
   - {fileID: 0}
   - {fileID: 0}
@@ -458,6 +459,7 @@ MonoBehaviour:
   jump: {x: 0, y: 1}
   jumpForce: 5
   jumpCount: 2
+  PlayerStats: {fileID: 0}
 --- !u!50 &657467165
 Rigidbody2D:
   serializedVersion: 4
@@ -532,15 +534,16 @@ MonoBehaviour:
   level: 0
   currentExp: 0
   maxExp: 0
-  currentHealth: 0
-  maxHealth: 0
+  currentHealth: 50
+  maxHealth: 100
   astralusRechargeRate: 1
+  isRechargingAstralus: 0
   Spells:
   - {fileID: 3409116884689781522, guid: d73559c743cfb744cb66e590eab7cc8d, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  currentAstralus: 0
-  maxAstralus: 0
+  - {fileID: 3409116884689781522, guid: b1bbc216e4c93644a9855c16a3b47c9f, type: 3}
+  - {fileID: 3409116884689781522, guid: bc901c151b7f59c45b9e7ffcfc3b5aca, type: 3}
+  currentAstralus: 100
+  maxAstralus: 100
 --- !u!1 &1235767844
 GameObject:
   m_ObjectHideFlags: 0
