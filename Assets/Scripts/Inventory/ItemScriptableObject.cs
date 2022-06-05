@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemScriptableObject : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public enum ItemType { Consumable, Equipment }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public class ItemScriptableObject : ScriptableObject
+{
+    public string Name;
+    public string Description;
+    public ItemType Type;
+    public float BuyPrice;
+    public float SellPrice;
+    public float StackSize;
+    
 }
