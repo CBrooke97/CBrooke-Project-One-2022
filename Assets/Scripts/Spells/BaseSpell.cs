@@ -51,7 +51,13 @@ public class BaseSpell : MonoBehaviour
     {
         //Apply spell
 
-        if(collision.gameObject.tag == "Player")
+        ApplySpell(collision);
+        
+    }
+
+    public virtual void ApplySpell(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
             print("hit player");
         }
@@ -64,7 +70,6 @@ public class BaseSpell : MonoBehaviour
             collision.GetComponent<CharStats>().TakeDamage(SpellSO.DamageAmount);
             Destroy(this.gameObject);
         }
-        
     }
 
     public IEnumerator OnCooldown(float cd)
