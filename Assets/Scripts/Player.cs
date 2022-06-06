@@ -9,17 +9,8 @@ public class Player : MonoBehaviour
 {
     //Player stats
     #region PlayerStats
-
-    [Header("Player Stats")]
-    public float maxHealth;
-    public float currentHealth;
-    public float maxAstralus;
-    public float currentAstralus;
-
-    public int level = 1;
-    public float maxExperience;
-    public float currentExperience;
-
+    
+    public CharStats PlayerStats;
     public string playerName;
     public float moveSpeed = 5f;
 
@@ -29,8 +20,8 @@ public class Player : MonoBehaviour
 
     #endregion
 
-    public CharStats PlayerStats;
-
+    
+    //Event handlers for updating health and mana bars upon value changes
     public event DamageHandler DamageEvent;
     public event AstralusHandler AstralusEvent;
 
@@ -55,28 +46,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void GainExp(float amount)
-    {
-        float expGain = currentExperience + amount;
-        if (expGain > maxExperience)
-        {
-            float carryExp = (currentExperience + amount) - maxExperience;
-            level++;
-            maxExperience *= 1.2f;
-            currentExperience = carryExp;
-        }
-        else
-        {
-            currentExperience = expGain;
-        }
-    }
-
+    //Applies damage to player stats
     public void ApplyDamage(int amount)
     {
+        //If damage amount is greater than or equal to remaining health, kill entity.
         if (PlayerStats.CurrentHealth - amount <= 0)
         {
             //death logic here
         }
+        //If current health is greater than the damage value, subtract damage amount from current health.
         else if (PlayerStats.CurrentHealth - amount > 0)
         {
             PlayerStats.TakeDamage(amount);
@@ -84,6 +62,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    //Invokes the damage event once health value is changed, triggering health bar to update.
     public void UpdateHealthBar()
     {
         //Debug.Log("Health Updated");
@@ -92,6 +71,7 @@ public class Player : MonoBehaviour
         DamageEvent?.Invoke(PlayerStats.CurrentHealth/PlayerStats.MaxHealth);
     }
 
+    //Invokes mana bar event upon mana value change, triggering mana bar update.
     public void OnAstralusUpdate()
     {
         AstralusEvent?.Invoke(PlayerStats.CurrentAstralus/PlayerStats.MaxAstralus);

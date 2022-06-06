@@ -5,8 +5,8 @@ using UnityEngine;
 public class CharStats : MonoBehaviour
 {
     [SerializeField] private int level;
-    [SerializeField] private int currentExp;
-    [SerializeField] private int maxExp;
+    [SerializeField] private float currentExp;
+    [SerializeField] private float maxExp;
 
     [SerializeField] private float currentHealth;
     [SerializeField] private float maxHealth;
@@ -81,5 +81,21 @@ public class CharStats : MonoBehaviour
     public void SpendAstralus(float astralusCost)
     {
         currentAstralus -= astralusCost;
+    }
+
+    public void GainExp(float amount)
+    {
+        float expGain = currentExp + amount;
+        if (expGain > maxExp)
+        {
+            float carryExp = (currentExp + amount) - maxExp;
+            level++;
+            maxExp *= 1.2f;
+            currentExp= carryExp;
+        }
+        else
+        {
+            currentExp = expGain;
+        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Element { Fire, Water, Leaf }
 
-[CreateAssetMenu(fileName = "New Spell", menuName = "Spells")]
+[CreateAssetMenu(menuName = "Spells", fileName = "Spell Scriptable Object")]
 public class SpellScriptableObject : ScriptableObject
 {
     public float DamageAmount = 10f;
