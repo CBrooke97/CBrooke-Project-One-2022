@@ -76,6 +76,7 @@ public class BaseSpell : MonoBehaviour
         //Applies spell effect to damageable object before destorying itself.
         else if (collision.gameObject.tag == "Damageable")
         {
+            collision.GetComponent<DamageableTerrain>().CompareElement(SpellSO.Element);
             Destroy(this.gameObject);
         }
         //Applies spell effect to enemy before destroying itself.
